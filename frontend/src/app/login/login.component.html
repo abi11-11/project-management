@@ -1,0 +1,31 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="text-center">Login</h2>
+
+    <form (ngSubmit)="login()">
+      <!-- Username -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control" [(ngModel)]="username" name="username" required />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" required />
+      </div>
+
+      <!-- Role Selection -->
+      <div class="form-group">
+        <label for="role">Select Role</label>
+        <select id="role" class="form-control" [(ngModel)]="role" name="role" required>
+          <option value="admin">Admin</option>
+          <option value="viewer">Viewer</option>
+        </select>
+      </div>
+
+      <!-- Login Button -->
+      <button type="submit" class="btn btn-primary btn-block">Login</button>
+    </form>
+  </div>
+</div>
