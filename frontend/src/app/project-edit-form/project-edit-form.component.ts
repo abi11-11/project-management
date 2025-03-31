@@ -33,7 +33,10 @@ export class EditProjectComponent implements OnInit {
 
   loadProject() {
     this.apiService.getProjectById(this.projectId).subscribe((project: { [key: string]: any; }) => {
-      this.projectForm.patchValue(project);
+      this.projectForm.patchValue({
+        name: project['name'],
+        description: project['description']
+      });
     });
   }
 

@@ -12,6 +12,11 @@ export class ProjectsController {
     return this.projectsService.getAllProjects();
   }
 
+  @Get(':id')
+  getProjectsById(@Param('id') id: number) {
+    return this.projectsService.getProjectById(id);
+  }
+
   @Post()
   @SetMetadata('role', Role.Admin)
   @UseGuards(JwtAuthGuard)

@@ -7,8 +7,14 @@ import { Observable, tap } from 'rxjs';
 })
 export class ApiService {
   private baseUrl = 'http://localhost:3000'; // Adjust if needed
+  private token: string | null= '';
+  private header:any ={};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.token = localStorage.getItem('token'); // Retrieve token from local storage
+  }
+
+  
 
   login(username: string, password: string, role: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/auth/login`, { username, password, role }).pipe(
@@ -33,21 +39,27 @@ export class ApiService {
   }
 
   createProject(project: any): Observable<any> {
-    const token = localStorage.getItem('token'); // Retrieve token from local storage
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`, // Add the token
+      'Authorization': `Bearer ${this.token}`, // Add the token
       'Content-Type': 'application/json'
     });
-  
     return this.http.post(`${this.baseUrl}/projects`, project, { headers });
   }
 
   updateProject(id: number, project: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/projects/${id}`, project);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`, // Add the token
+      'Content-Type': 'application/json'
+    });
+    return this.http.put(`${this.baseUrl}/projects/${id}`, project, { headers } );
   }
 
   deleteProject(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/projects/${id}`);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`, // Add the token
+      'Content-Type': 'application/json'
+    });
+    return this.http.delete(`${this.baseUrl}/projects/${id}`, { headers } );
   }
 
   getProjectById(id: string): Observable<any> {

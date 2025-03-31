@@ -11,6 +11,9 @@ export class Project {
   @Column()
   description: string;
 
+  // @Column()
+  // status: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 }

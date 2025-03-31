@@ -67,4 +67,17 @@ h2 {
   a:hover {
     text-decoration: underline;
   }
+
+  .align-icons{
+    display: flex;
+    align-items: center;
+  }
   
+  button.p-2.bg-red-500 {
+    background: none;
+}
+
+i.fas.fa-trash {
+  color: red;
+}
+

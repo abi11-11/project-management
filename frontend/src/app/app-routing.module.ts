@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'projects/new', component: ProjectFormComponent },
   { path: 'projects', component: ProjectsComponent },
-  // { path: 'projects/edit', component: EditProjectComponent},
+  { path: 'projects/edit/:id', component: EditProjectComponent },
   { path: '', redirectTo: '/projects', pathMatch: 'full' }
 ];
 

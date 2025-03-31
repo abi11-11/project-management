@@ -12,6 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { NotificationsGateway } from './notifications/notification.gateway';
 import { User } from './users/users.entity';
 import { ConfigModule } from '@nestjs/config';
+import { Project } from './projects/projects.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -21,9 +22,9 @@ import { ConfigModule } from '@nestjs/config';
     username: 'postgres',
     password: 'admin',
     database: 'nestjs_app',
-    autoLoadEntities: true,
+    autoLoadEntities: true, 
     synchronize: true, // ⚠ Set to `false` in production
-  }),TypeOrmModule.forFeature([User]), ConfigModule.forRoot({ isGlobal: true }) // ✅ Loads .env globally
+  }),TypeOrmModule.forFeature([User,Project]), ConfigModule.forRoot({ isGlobal: true }) // ✅ Loads .env globally
   ,AuthModule, ProjectsModule, UsersModule],
   controllers: [AppController, ProjectsController, UsersController],
   providers: [AppService, ProjectsService, UsersService, NotificationsGateway],

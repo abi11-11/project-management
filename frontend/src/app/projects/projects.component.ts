@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { SocketService } from '../services/socket.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -13,7 +14,7 @@ export class ProjectsComponent implements OnInit {
   role: string = localStorage.getItem('role') || 'Viewer';
   notifications: string[] = [];
 
-  constructor(private apiService: ApiService, private socketService: SocketService) {}
+  constructor(private apiService: ApiService, private socketService: SocketService, private router: Router) {}
 
   ngOnInit() {
     this.loadProjects();
@@ -35,5 +36,9 @@ export class ProjectsComponent implements OnInit {
   isAdmin(): boolean {
     const role = localStorage.getItem('role'); // Make sure role is stored in localStorage during login
     return role === 'admin';
+  }
+
+  navigateToEditProject(projectId: string) {
+    this.router.navigate(['/projects/edit', projectId]);
   }
 }
